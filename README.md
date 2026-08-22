@@ -89,6 +89,8 @@ También se puede ejecutar desde VS Code seleccionando un dispositivo o emulador
 
 Para preparar el proyecto utilicé el SDK de Flutter, Android Studio para el SDK de Android y la creación del emulador, y VS Code como editor.
 
+Para confirmar que el entorno quedó bien instalado corrí `flutter doctor` (ver `capturas/Ejecucion de Flutter Doctor.png`). Lo único que marca es un `[!]` en Visual Studio, porque le faltan componentes para compilar apps de escritorio Windows; eso no afecta este proyecto ya que solo se compila para Android, así que ese aviso se puede ignorar.
+
 La estructura nativa de Flutter se generó utilizando:
 
 ```bash
