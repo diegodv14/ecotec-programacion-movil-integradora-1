@@ -6,6 +6,7 @@ import '../theme/app_colors.dart';
 import '../widgets/catalogo_header.dart';
 import '../widgets/oferta_banner.dart';
 import '../widgets/producto_card.dart';
+import 'producto_detail_page.dart';
 
 /// Pantalla principal: lista el catálogo de productos y gestiona el estado
 /// de favoritos y visibilidad de ofertas.
@@ -79,10 +80,25 @@ class _CatalogoHomePageState extends State<CatalogoHomePage> {
               padding: const EdgeInsets.all(12),
               itemCount: productosCatalogo.length,
               itemBuilder: (context, index) {
+                final producto = productosCatalogo[index];
                 return ProductoCard(
-                  producto: productosCatalogo[index],
+                  producto: producto,
+                  index: index,
                   esFavorito: _favoritos.contains(index),
                   onFavoritoPressed: () => _alternarFavorito(index),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ProductoDetailPage(
+                          producto: producto,
+                          index: index,
+                          esFavorito: _favoritos.contains(index),
+                          onFavoritoPressed: () => _alternarFavorito(index),
+                        ),
+                      ),
+                    );
+                  },
                 );
               },
             ),
