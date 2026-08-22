@@ -14,7 +14,6 @@ dependencies:
   cupertino_icons: ^1.0.6
 
   # Paquete externo instalado para la Actividad Integradora 1.
-  # Se usa para aplicar tipografías personalizadas (Poppins) en toda la app.
   google_fonts: ^6.2.1
 
 dev_dependencies:

@@ -1,60 +1,118 @@
 # Catálogo de Productos
 
-Actividad Integradora 1 - Programación de Aplicaciones Móviles - Ecotec
-Juan Diego Benavides Luna
+**Actividad Integradora 1 - Programación de Aplicaciones Móviles - Ecotec**
+**Juan Diego Benavides Luna**
 
-App en Flutter de un catálogo de tienda ficticia. Muestra productos con foto, precio y descripción, se pueden marcar como favoritos, tiene una pantalla de detalle para cada producto y un botón de "ofertas" que muestra un banner promocional.
+Aplicación móvil desarrollada con Flutter para mostrar el catálogo de una tienda ficticia. La aplicación permite visualizar productos, consultar su información, marcarlos como favoritos y acceder a una sección de ofertas.
 
-## De qué se trata
+## Características
 
-La idea era simple: cumplir con lo que pide la rúbrica (proyecto Flutter, un paquete externo, correr en emulador, subir a GitHub) pero sin dejarlo tan plano. Además de la lista de productos con favoritos, le agregué:
+* Catálogo con 6 productos.
+* Imagen, nombre, precio y descripción de cada producto.
+* Sistema de favoritos.
+* Contador de productos favoritos.
+* Pantalla de detalle para cada producto.
+* Transición animada entre el catálogo y el detalle mediante `Hero`.
+* Banner de ofertas.
+* Imágenes reales almacenadas dentro de `assets/images/`.
+* Diseño personalizado con una paleta de tonos azul marino.
+* Tipografía Poppins mediante el paquete `google_fonts`.
 
-- Una pantalla de detalle: al tocar un producto se abre su info completa con la foto más grande (con animación Hero).
-- Fotos reales de cada producto en vez de solo íconos (están en `assets/images/`).
-- Una paleta de colores propia, tonos azul marino en vez del morado que traía el ejemplo inicial.
+## Estructura del proyecto
 
-El paquete externo que usé es `google_fonts`, para la tipografía Poppins en toda la app.
-
-## Estructura de `lib/`
-
-Al principio todo estaba en un solo `main.dart` (así lo dejé la primera vez para cumplir con el mínimo), pero después lo separé en carpetas porque se estaba volviendo difícil de leer:
-
-```
+```text
 lib/
-  main.dart                   -> solo el runApp()
-  app/catalogo_productos_app.dart   -> MaterialApp y tema
-  theme/app_colors.dart             -> colores de la app
-  models/producto.dart              -> clase Producto
-  data/productos_data.dart          -> los 6 productos de ejemplo
-  screens/
-    catalogo_home_page.dart   -> pantalla principal
-    producto_detail_page.dart -> pantalla de detalle
-  widgets/
-    catalogo_header.dart
-    oferta_banner.dart
-    producto_card.dart
+├── main.dart
+├── app/
+│   └── catalogo_productos_app.dart
+├── theme/
+│   └── app_colors.dart
+├── models/
+│   └── producto.dart
+├── data/
+│   └── productos_data.dart
+├── screens/
+│   ├── catalogo_home_page.dart
+│   └── producto_detail_page.dart
+└── widgets/
+    ├── catalogo_header.dart
+    ├── oferta_banner.dart
+    └── producto_card.dart
 ```
 
-## Pasos que seguí
+### Descripción de las carpetas
 
-Instalé el Flutter SDK (lo agregué al PATH manualmente porque no venía en un instalador), Android Studio para tener el SDK de Android y crear un emulador, y usé VS Code como editor.
+* `app/`: configuración principal de la aplicación y del tema.
+* `theme/`: colores utilizados en la interfaz.
+* `models/`: modelo de datos para los productos.
+* `data/`: información de los productos mostrados en el catálogo.
+* `screens/`: pantallas principales de la aplicación.
+* `widgets/`: componentes reutilizables de la interfaz.
 
-Dentro de la carpeta del proyecto corrí `flutter create .` para que generara las carpetas nativas (`android/`, `ios/`, etc.) sin tocar el código que ya tenía. Después `flutter pub add google_fonts` y a probar en el emulador con `flutter run`.
+## Tecnologías utilizadas
 
-Cosa random que me pasó y me tomó rato entender: como la carpeta de la materia tiene tilde ("Programación"), el compilador de shaders de Flutter (`impellerc`) tronaba en Windows al compilar - por lo visto es un problema conocido con rutas que no son puro ASCII. Lo arreglé mapeando la carpeta del proyecto a una unidad virtual con `subst F: "ruta"` y corriendo todo desde `F:\` en vez de la ruta con acentos. Si a alguien más le pasa lo mismo, es básicamente eso.
+* **Flutter**
+* **Dart**
+* **Android Studio**
+* **VS Code**
+* **Google Fonts**
+* **Git / GitHub**
 
-## Cómo funciona por dentro
+El único paquete externo utilizado en la aplicación es [`google_fonts`](https://pub.dev/packages/google_fonts), empleado para aplicar la fuente **Poppins** en la interfaz.
 
-El estado de favoritos y si se muestra el banner de ofertas vive en `CatalogoHomePage` (es un `StatefulWidget`). Cuando tocas el corazón de un producto, ya sea desde la lista o desde el detalle, se llama al mismo callback que actualiza ese estado, por eso el contador de arriba y el ícono del corazón siempre quedan sincronizados entre las dos pantallas.
+## Instalación y ejecución
 
-Al tocar un producto (cualquier parte de la tarjeta menos el corazón) se abre `ProductoDetailPage` con `Navigator.push`, y la imagen usa un `Hero` para que la transición se vea más fluida en vez de un corte seco.
+Para ejecutar el proyecto es necesario tener instalado Flutter y un dispositivo Android o un emulador configurado.
 
-## Repositorio
+Primero se debe clonar el repositorio:
 
-https://github.com/diegodv14/ecotec-programacion-movil-integradora-1
+```bash
+git clone https://github.com/diegodv14/ecotec-programacion-movil-integradora-1.git
+cd ecotec-programacion-movil-integradora-1
+```
 
-Subí el proyecto en varios commits en vez de uno solo (README, pubspec con la dependencia, el código, los archivos que genera Flutter, y después el rediseño y la pantalla de detalle como cambios aparte).
+Luego instalar las dependencias:
+
+```bash
+flutter pub get
+```
+
+Finalmente, ejecutar la aplicación:
+
+```bash
+flutter run
+```
+
+También se puede ejecutar desde VS Code seleccionando un dispositivo o emulador disponible.
+
+## Desarrollo del proyecto
+
+Para preparar el proyecto utilicé el SDK de Flutter, Android Studio para el SDK de Android y la creación del emulador, y VS Code como editor.
+
+La estructura nativa de Flutter se generó utilizando:
+
+```bash
+flutter create .
+```
+
+Después agregué la dependencia de Google Fonts:
+
+```bash
+flutter pub add google_fonts
+```
+
+## Funcionamiento
+
+La pantalla principal contiene la lista de productos y el estado de los favoritos.
+
+Cuando se selecciona el corazón de un producto, se actualiza su estado como favorito. Esta misma lógica se utiliza tanto desde la pantalla principal como desde la pantalla de detalle, por lo que el contador de favoritos y los iconos permanecen sincronizados.
+
+El botón de ofertas permite mostrar u ocultar un banner promocional dentro de la pantalla principal.
 
 ## Capturas
 
-Están en `capturas/`, los nombres que pide la rúbrica están detallados en `capturas/LEEME.txt`.
+Las capturas de pantalla utilizadas para la entrega se encuentran dentro de:
+
+```text
+capturas/
+```
