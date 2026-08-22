@@ -1,67 +1,60 @@
 # Catálogo de Productos
 
-Actividad Integradora 1 de Programación de Aplicaciones Móviles (Ecotec). Es una app hecha en Flutter que simula el catálogo de una tienda: se puede ver una lista de productos con foto, precio y descripción, marcarlos como favoritos, entrar al detalle de cada uno y mostrar/ocultar un banner de ofertas.
+Actividad Integradora 1 - Programación de Aplicaciones Móviles - Ecotec
+Juan Diego Benavides Luna
 
-Autor: Juan Diego Benavides Luna
+App en Flutter de un catálogo de tienda ficticia. Muestra productos con foto, precio y descripción, se pueden marcar como favoritos, tiene una pantalla de detalle para cada producto y un botón de "ofertas" que muestra un banner promocional.
 
-## Qué hace la app
+## De qué se trata
 
-- Lista de productos con foto real (traída de Picsum Photos), nombre, descripción corta y precio.
-- Tocar un producto abre su pantalla de detalle, con la foto en grande y la descripción completa.
-- Botón de favorito (❤) tanto en la lista como en el detalle; el contador de favoritos del encabezado se actualiza en tiempo real y se mantiene sincronizado entre las dos pantallas.
-- Botón "Ver ofertas" que muestra/oculta un banner con una promoción.
-- Tipografía Poppins en toda la app usando el paquete `google_fonts`.
+La idea era simple: cumplir con lo que pide la rúbrica (proyecto Flutter, un paquete externo, correr en emulador, subir a GitHub) pero sin dejarlo tan plano. Además de la lista de productos con favoritos, le agregué:
 
-## Tecnologías
+- Una pantalla de detalle: al tocar un producto se abre su info completa con la foto más grande (con animación Hero).
+- Fotos reales de cada producto en vez de solo íconos (están en `assets/images/`).
+- Una paleta de colores propia, tonos azul marino en vez del morado que traía el ejemplo inicial.
 
-Flutter + Dart, Android Studio (para el emulador), VS Code, y `google_fonts` (`^6.2.1`) como paquete externo. El repositorio se maneja con Git/GitHub.
+El paquete externo que usé es `google_fonts`, para la tipografía Poppins en toda la app.
 
-## Estructura del proyecto
+## Estructura de `lib/`
 
-No dejé todo en un solo `main.dart`; lo separé un poco para que se entienda mejor qué hace cada parte:
+Al principio todo estaba en un solo `main.dart` (así lo dejé la primera vez para cumplir con el mínimo), pero después lo separé en carpetas porque se estaba volviendo difícil de leer:
 
 ```
 lib/
-├── main.dart                     # solo llama a runApp()
-├── app/
-│   └── catalogo_productos_app.dart   # MaterialApp + tema
-├── theme/
-│   └── app_colors.dart               # paleta de colores de la app
-├── models/
-│   └── producto.dart                 # clase Producto
-├── data/
-│   └── productos_data.dart           # lista de productos de ejemplo
-├── screens/
-│   ├── catalogo_home_page.dart       # pantalla principal (la lista)
-│   └── producto_detail_page.dart     # pantalla de detalle
-└── widgets/
-    ├── catalogo_header.dart
-    ├── oferta_banner.dart
-    └── producto_card.dart
+  main.dart                   -> solo el runApp()
+  app/catalogo_productos_app.dart   -> MaterialApp y tema
+  theme/app_colors.dart             -> colores de la app
+  models/producto.dart              -> clase Producto
+  data/productos_data.dart          -> los 6 productos de ejemplo
+  screens/
+    catalogo_home_page.dart   -> pantalla principal
+    producto_detail_page.dart -> pantalla de detalle
+  widgets/
+    catalogo_header.dart
+    oferta_banner.dart
+    producto_card.dart
 ```
 
-## Cómo se hizo (resumen)
+## Pasos que seguí
 
-1. Instalé el Flutter SDK y lo agregué al PATH, con Android Studio para el SDK de Android y el emulador.
-2. Corrí `flutter create .` dentro de esta misma carpeta para que generara `android/`, `ios/`, `web/`, etc. sin tocar el `lib/main.dart` ni el `pubspec.yaml` que ya tenía.
-3. Agregué el paquete `google_fonts` con `flutter pub add google_fonts`.
-4. Probé la app en un emulador Android (Pixel, API 36) con `flutter run`.
-5. Inicialicé el repo con `git init` y subí el proyecto a GitHub.
+Instalé el Flutter SDK (lo agregué al PATH manualmente porque no venía en un instalador), Android Studio para tener el SDK de Android y crear un emulador, y usé VS Code como editor.
 
-Un detalle que me costó resolver: la carpeta del proyecto está dentro de "Programación de Aplicaciones Moviles", y esa tilde en la "ó" hace que el compilador de shaders de Flutter (`impellerc`) falle en Windows al intentar escribir los assets — es un bug conocido con rutas no-ASCII. Lo resolví mapeando la carpeta a una unidad virtual sin acentos con `subst F: "ruta\del\proyecto"` y corriendo `flutter run` desde ahí.
+Dentro de la carpeta del proyecto corrí `flutter create .` para que generara las carpetas nativas (`android/`, `ios/`, etc.) sin tocar el código que ya tenía. Después `flutter pub add google_fonts` y a probar en el emulador con `flutter run`.
 
-## Interacciones principales
+Cosa random que me pasó y me tomó rato entender: como la carpeta de la materia tiene tilde ("Programación"), el compilador de shaders de Flutter (`impellerc`) tronaba en Windows al compilar - por lo visto es un problema conocido con rutas que no son puro ASCII. Lo arreglé mapeando la carpeta del proyecto a una unidad virtual con `subst F: "ruta"` y corriendo todo desde `F:\` en vez de la ruta con acentos. Si a alguien más le pasa lo mismo, es básicamente eso.
 
-1. **Favorito**: tocar el corazón (en la lista o en el detalle) lo marca/desmarca, actualiza el contador de arriba y muestra un `SnackBar` de confirmación.
-2. **Ver/ocultar ofertas**: el botón del encabezado alterna un bloque con una promoción.
-3. **Ver detalle**: tocar cualquier parte de la tarjeta de un producto (menos el corazón) navega a su pantalla de detalle con `Navigator.push` y una transición `Hero` en la imagen.
+## Cómo funciona por dentro
+
+El estado de favoritos y si se muestra el banner de ofertas vive en `CatalogoHomePage` (es un `StatefulWidget`). Cuando tocas el corazón de un producto, ya sea desde la lista o desde el detalle, se llama al mismo callback que actualiza ese estado, por eso el contador de arriba y el ícono del corazón siempre quedan sincronizados entre las dos pantallas.
+
+Al tocar un producto (cualquier parte de la tarjeta menos el corazón) se abre `ProductoDetailPage` con `Navigator.push`, y la imagen usa un `Hero` para que la transición se vea más fluida en vez de un corte seco.
 
 ## Repositorio
 
 https://github.com/diegodv14/ecotec-programacion-movil-integradora-1
 
-El historial de commits separa el proyecto en partes lógicas (README, dependencias, código fuente, archivos generados por Flutter, rediseño visual y la pantalla de detalle) en lugar de subir todo junto.
+Subí el proyecto en varios commits en vez de uno solo (README, pubspec con la dependencia, el código, los archivos que genera Flutter, y después el rediseño y la pantalla de detalle como cambios aparte).
 
 ## Capturas
 
-Van en la carpeta `capturas/` (ver `capturas/LEEME.txt` para los nombres exactos que pide la rúbrica): instalación de Flutter, el proyecto en VS Code, el emulador corriendo, la app funcionando, el uso del paquete externo y el repositorio ya en GitHub.
+Están en `capturas/`, los nombres que pide la rúbrica están detallados en `capturas/LEEME.txt`.
