@@ -1,0 +1,26 @@
+name: catalogo_productos
+description: "Catálogo de Productos - Actividad Integradora 1 (Mi Primera Aplicación en Flutter)"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.6
+
+  # Paquete externo instalado para la Actividad Integradora 1.
+  # Se usa para aplicar tipografías personalizadas (Poppins) en toda la app.
+  google_fonts: ^6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
