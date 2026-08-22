@@ -1,0 +1,21 @@
+Coloca aquí las capturas de pantalla pedidas por la rúbrica, con estos nombres:
+
+Evidencias de instalación:
+  01_flutter_doctor.png        -> Ejecución del comando "flutter doctor" en la terminal
+  02_proyecto_en_vscode.png    -> Proyecto abierto en Visual Studio Code
+  05_emulador_funcionando.png  -> Emulador Android abierto y funcionando
+  06_app_en_emulador.png       -> La app corriendo dentro del emulador
+  03_instalacion_paquete.png   -> Terminal ejecutando "flutter pub add google_fonts"
+  04_pubspec_yaml.png          -> pubspec.yaml mostrando la línea "google_fonts: ^6.2.1"
+  09_repositorio_github.png    -> Repositorio ya publicado en GitHub (con los commits visibles)
+
+Capturas de la aplicación:
+  07_boton_funcionando.png     -> Antes/después de presionar el botón "Ver ofertas" o el corazón de favorito
+  08_uso_paquete_google_fonts.png -> Pantalla principal mostrando la tipografía Poppins (google_fonts)
+
+Puedes tomar dos imágenes en una sola captura (antes/después) si lo prefieres.
+Después de agregar las imágenes, no olvides hacer commit y push:
+
+  git add capturas/
+  git commit -m "docs: agregar capturas de evidencia del proyecto"
+  git push

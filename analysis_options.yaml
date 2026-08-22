@@ -1,0 +1,5 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Puedes activar/desactivar reglas adicionales aquí si lo deseas.
