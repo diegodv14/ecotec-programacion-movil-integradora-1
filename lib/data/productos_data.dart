@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/producto.dart';
 
 /// Fuente de datos estática con el catálogo de productos de ejemplo.
-/// Las fotos vienen de Picsum Photos (https://picsum.photos), una API
-/// gratuita de imágenes reales que no requiere API key. Cada producto
-/// usa una "seed" fija para que siempre muestre la misma foto.
+/// Las fotos son propias, incluidas en `assets/images/`.
 const List<Producto> productosCatalogo = [
   Producto(
     nombre: 'Mochila Urbana',
@@ -13,7 +11,7 @@ const List<Producto> productosCatalogo = [
     precio: 35.99,
     icono: Icons.backpack,
     color: Color(0xFF1D3557),
-    imagenUrl: 'https://picsum.photos/seed/mochila-urbana/400/400',
+    imagenAsset: 'assets/images/mochila_urbana.jpg',
   ),
   Producto(
     nombre: 'Audífonos Inalámbricos',
@@ -21,7 +19,7 @@ const List<Producto> productosCatalogo = [
     precio: 49.50,
     icono: Icons.headphones,
     color: Color(0xFF2A6F97),
-    imagenUrl: 'https://picsum.photos/seed/audifonos-inalambricos/400/400',
+    imagenAsset: 'assets/images/audifonos_inalambricos.jpg',
   ),
   Producto(
     nombre: 'Reloj Inteligente',
@@ -29,7 +27,7 @@ const List<Producto> productosCatalogo = [
     precio: 89.00,
     icono: Icons.watch,
     color: Color(0xFF457B9D),
-    imagenUrl: 'https://picsum.photos/seed/reloj-inteligente/400/400',
+    imagenAsset: 'assets/images/reloj_inteligente.jpg',
   ),
   Producto(
     nombre: 'Lámpara LED',
@@ -37,7 +35,7 @@ const List<Producto> productosCatalogo = [
     precio: 18.75,
     icono: Icons.lightbulb,
     color: Color(0xFF5C80BC),
-    imagenUrl: 'https://picsum.photos/seed/lampara-led/400/400',
+    imagenAsset: 'assets/images/lampara_led.webp',
   ),
   Producto(
     nombre: 'Taza Térmica',
@@ -45,7 +43,7 @@ const List<Producto> productosCatalogo = [
     precio: 12.30,
     icono: Icons.local_cafe,
     color: Color(0xFF3D5A80),
-    imagenUrl: 'https://picsum.photos/seed/taza-termica/400/400',
+    imagenAsset: 'assets/images/taza_termica.webp',
   ),
   Producto(
     nombre: 'Teclado Mecánico',
@@ -53,6 +51,6 @@ const List<Producto> productosCatalogo = [
     precio: 65.40,
     icono: Icons.keyboard,
     color: Color(0xFF6D8299),
-    imagenUrl: 'https://picsum.photos/seed/teclado-mecanico/400/400',
+    imagenAsset: 'assets/images/teclado_mecanico.webp',
   ),
 ];

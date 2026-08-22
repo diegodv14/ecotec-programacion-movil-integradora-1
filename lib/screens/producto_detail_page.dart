@@ -48,8 +48,8 @@ class _ProductoDetailPageState extends State<ProductoDetailPage> {
             flexibleSpace: FlexibleSpaceBar(
               background: Hero(
                 tag: 'producto-imagen-${widget.index}',
-                child: Image.network(
-                  producto.imagenUrl,
+                child: Image.asset(
+                  producto.imagenAsset,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) => Container(
                     color: producto.color.withValues(alpha: 0.15),

@@ -45,22 +45,9 @@ class ProductoCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     child: Hero(
                       tag: 'producto-imagen-$index',
-                      child: Image.network(
-                        producto.imagenUrl,
+                      child: Image.asset(
+                        producto.imagenAsset,
                         fit: BoxFit.cover,
-                        loadingBuilder: (context, child, progress) {
-                          if (progress == null) return child;
-                          return Center(
-                            child: SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                color: producto.color,
-                              ),
-                            ),
-                          );
-                        },
                         errorBuilder: (context, error, stackTrace) => Container(
                           color: producto.color.withValues(alpha: 0.15),
                           child: Icon(producto.icono, color: producto.color),
