@@ -1,163 +1,67 @@
-# 📱 Catálogo de Productos — Mi Primera Aplicación en Flutter
+# Catálogo de Productos
 
-Actividad Integradora 1 — Programación de Aplicaciones Móviles — Ecotec
+Actividad Integradora 1 de Programación de Aplicaciones Móviles (Ecotec). Es una app hecha en Flutter que simula el catálogo de una tienda: se puede ver una lista de productos con foto, precio y descripción, marcarlos como favoritos, entrar al detalle de cada uno y mostrar/ocultar un banner de ofertas.
 
-## 1. Objetivo
+Autor: Juan Diego Benavides Luna
 
-Desarrollar una aplicación básica en Flutter que demuestre la creación de un proyecto, el uso de widgets iniciales, la ejecución en un emulador Android, la instalación de un paquete externo y la publicación del proyecto en GitHub.
+## Qué hace la app
 
-## 2. Tema elegido
+- Lista de productos con foto real (traída de Picsum Photos), nombre, descripción corta y precio.
+- Tocar un producto abre su pantalla de detalle, con la foto en grande y la descripción completa.
+- Botón de favorito (❤) tanto en la lista como en el detalle; el contador de favoritos del encabezado se actualiza en tiempo real y se mantiene sincronizado entre las dos pantallas.
+- Botón "Ver ofertas" que muestra/oculta un banner con una promoción.
+- Tipografía Poppins en toda la app usando el paquete `google_fonts`.
 
-**Catálogo de Productos**: una app que muestra una lista de productos de una tienda ficticia, cada uno con ícono, nombre, descripción y precio, con la posibilidad de marcarlos como favoritos y de mostrar/ocultar un bloque de ofertas especiales.
+## Tecnologías
 
-## 3. Tecnologías utilizadas
+Flutter + Dart, Android Studio (para el emulador), VS Code, y `google_fonts` (`^6.2.1`) como paquete externo. El repositorio se maneja con Git/GitHub.
 
-- Flutter SDK
-- Dart
-- Visual Studio Code (extensiones Flutter y Dart)
-- Android Studio (para el emulador Android / AVD Manager)
-- Paquete externo: **google_fonts** (`^6.2.1`)
-- Git y GitHub
+## Estructura del proyecto
 
-## 4. Estructura del proyecto
+No dejé todo en un solo `main.dart`; lo separé un poco para que se entienda mejor qué hace cada parte:
 
 ```
-catalogo_productos/
-├── lib/
-│   └── main.dart          # Código principal de la app
-├── android/                # Generado por Flutter (flutter create .)
-├── capturas/                # Evidencias (screenshots) pedidas en la rúbrica
-├── pubspec.yaml             # Dependencias del proyecto (incluye google_fonts)
-├── analysis_options.yaml
-├── .gitignore
-└── README.md                 # Este archivo
+lib/
+├── main.dart                     # solo llama a runApp()
+├── app/
+│   └── catalogo_productos_app.dart   # MaterialApp + tema
+├── theme/
+│   └── app_colors.dart               # paleta de colores de la app
+├── models/
+│   └── producto.dart                 # clase Producto
+├── data/
+│   └── productos_data.dart           # lista de productos de ejemplo
+├── screens/
+│   ├── catalogo_home_page.dart       # pantalla principal (la lista)
+│   └── producto_detail_page.dart     # pantalla de detalle
+└── widgets/
+    ├── catalogo_header.dart
+    ├── oferta_banner.dart
+    └── producto_card.dart
 ```
 
-## 5. Pasos seguidos para crear el proyecto
+## Cómo se hizo (resumen)
 
-### 5.1 Instalación del entorno
+1. Instalé el Flutter SDK y lo agregué al PATH, con Android Studio para el SDK de Android y el emulador.
+2. Corrí `flutter create .` dentro de esta misma carpeta para que generara `android/`, `ios/`, `web/`, etc. sin tocar el `lib/main.dart` ni el `pubspec.yaml` que ya tenía.
+3. Agregué el paquete `google_fonts` con `flutter pub add google_fonts`.
+4. Probé la app en un emulador Android (Pixel, API 36) con `flutter run`.
+5. Inicialicé el repo con `git init` y subí el proyecto a GitHub.
 
-1. Descargar e instalar el **Flutter SDK** desde https://docs.flutter.dev/get-started/install/windows y agregarlo al PATH del sistema.
-2. Instalar **Android Studio** (incluye Android SDK) y, desde el *Device Manager* / *AVD Manager*, crear un emulador Android (por ejemplo, Pixel 6, API 33+).
-3. Instalar **Visual Studio Code** y agregar las extensiones **Flutter** y **Dart** desde el marketplace.
-4. Verificar que todo esté correctamente instalado ejecutando en la terminal:
+Un detalle que me costó resolver: la carpeta del proyecto está dentro de "Programación de Aplicaciones Moviles", y esa tilde en la "ó" hace que el compilador de shaders de Flutter (`impellerc`) falle en Windows al intentar escribir los assets — es un bug conocido con rutas no-ASCII. Lo resolví mapeando la carpeta a una unidad virtual sin acentos con `subst F: "ruta\del\proyecto"` y corriendo `flutter run` desde ahí.
 
-   ```bash
-   flutter doctor
-   ```
+## Interacciones principales
 
-   > 📸 Captura pendiente: `capturas/01_flutter_doctor.png`
+1. **Favorito**: tocar el corazón (en la lista o en el detalle) lo marca/desmarca, actualiza el contador de arriba y muestra un `SnackBar` de confirmación.
+2. **Ver/ocultar ofertas**: el botón del encabezado alterna un bloque con una promoción.
+3. **Ver detalle**: tocar cualquier parte de la tarjeta de un producto (menos el corazón) navega a su pantalla de detalle con `Navigator.push` y una transición `Hero` en la imagen.
 
-### 5.2 Creación del proyecto
+## Repositorio
 
-Este repositorio ya incluye el código fuente (`lib/main.dart`) y `pubspec.yaml`. Para generar los archivos nativos de cada plataforma (Android, iOS, etc.) que Flutter necesita para compilar, dentro de la carpeta `catalogo_productos` se ejecutó:
+https://github.com/diegodv14/ecotec-programacion-movil-integradora-1
 
-```bash
-flutter create .
-```
+El historial de commits separa el proyecto en partes lógicas (README, dependencias, código fuente, archivos generados por Flutter, rediseño visual y la pantalla de detalle) en lugar de subir todo junto.
 
-Esto genera automáticamente las carpetas `android/`, `ios/`, `web/`, `linux/`, `macos/`, `windows/` **sin sobrescribir** el `lib/main.dart` ni el `pubspec.yaml` ya existentes.
+## Capturas
 
-> 📸 Captura pendiente: `capturas/02_proyecto_en_vscode.png` (proyecto abierto en VS Code)
-
-### 5.3 Instalación del paquete externo
-
-Se instaló el paquete [`google_fonts`](https://pub.dev/packages/google_fonts), que permite aplicar tipografías personalizadas de Google Fonts (en este caso, **Poppins**) a los textos de la aplicación:
-
-```bash
-flutter pub add google_fonts
-flutter pub get
-```
-
-Esto agrega la línea `google_fonts: ^6.2.1` a `pubspec.yaml` (ya incluida en este repositorio).
-
-> 📸 Capturas pendientes:
-> - `capturas/03_instalacion_paquete.png` (terminal ejecutando `flutter pub add google_fonts`)
-> - `capturas/04_pubspec_yaml.png` (pubspec.yaml con el paquete agregado)
-
-### 5.4 Ejecución en el emulador
-
-1. Abrir el emulador Android desde Android Studio (AVD Manager) o con `flutter emulators --launch <id>`.
-2. Ejecutar la app:
-
-   ```bash
-   flutter run
-   ```
-
-> 📸 Capturas pendientes:
-> - `capturas/05_emulador_funcionando.png` (emulador abierto)
-> - `capturas/06_app_en_emulador.png` (app corriendo en el emulador)
-
-## 6. Descripción de la pantalla principal
-
-La pantalla principal (`CatalogoHomePage`, en `lib/main.dart`) incluye:
-
-- `MaterialApp` y `Scaffold` como estructura base.
-- `AppBar` con título personalizado y color propio (`#6C63FF`).
-- Un encabezado (`Container`) con texto de bienvenida y un texto informativo.
-- Un `ElevatedButton` ("Ver ofertas" / "Ocultar ofertas") que **muestra u oculta** un bloque de ofertas especiales.
-- Una lista de productos construida con `ListView.builder`, donde cada producto se muestra en una `Card` que combina `Row` y `Column`, con un ícono dentro de un `Container` de color personalizado.
-- Un botón de favorito (`IconButton` con ícono de corazón) en cada producto que:
-  - Cambia de color/ícono al presionarlo (favorito / no favorito).
-  - Actualiza un contador de favoritos en la parte superior.
-  - Muestra un mensaje (`SnackBar`) confirmando la acción.
-- Colores personalizados en toda la interfaz (`#6C63FF`, `#00BFA6`, `#FF6584`, `#FFA726`, `#42A5F5`, `#8D6E63`).
-- Tipografía personalizada mediante el paquete **google_fonts** (familia *Poppins*).
-
-## 7. Interacción básica
-
-Existen dos interacciones principales, ambas cumpliendo el requisito de "acción sencilla":
-
-1. **Botón "Ver ofertas / Ocultar ofertas"**: muestra u oculta un bloque de texto con una promoción.
-2. **Botón de favorito (❤) en cada producto**: alterna el estado de favorito, actualiza el contador de favoritos y muestra un mensaje emergente (`SnackBar`).
-
-> 📸 Captura pendiente: `capturas/07_boton_funcionando.png` (antes/después de presionar el botón)
-> 📸 Captura pendiente: `capturas/08_uso_paquete_google_fonts.png` (evidencia visual de la tipografía aplicada)
-
-## 8. Publicación en GitHub
-
-Repositorio: https://github.com/diegodv14/ecotec-programacion-movil-integradora-1
-
-Pasos ejecutados (dentro de la carpeta `catalogo_productos`):
-
-```bash
-git init
-git add README.md
-git commit -m "docs: agregar README con la documentación del proyecto"
-
-git add pubspec.yaml
-git commit -m "chore: configurar pubspec.yaml y agregar dependencia google_fonts"
-
-git add lib/main.dart
-git commit -m "feat: crear pantalla principal con catálogo de productos e interacción"
-
-git add .
-git commit -m "chore: agregar archivos generados por flutter create y assets del proyecto"
-
-git branch -M main
-git remote add origin https://github.com/diegodv14/ecotec-programacion-movil-integradora-1.git
-git push -u origin main
-```
-
-> ✅ El historial cuenta con un mínimo de 4 commits, tal como pide la rúbrica.
-
-> 📸 Captura pendiente: `capturas/09_repositorio_github.png` (repositorio publicado en GitHub)
-
-## 9. Evidencias (capturas)
-
-Todas las capturas solicitadas por la rúbrica deben colocarse dentro de la carpeta `capturas/` con estos nombres sugeridos (ver `capturas/LEEME.txt` para el detalle):
-
-- [ ] `01_flutter_doctor.png`
-- [ ] `02_proyecto_en_vscode.png`
-- [ ] `03_instalacion_paquete.png`
-- [ ] `04_pubspec_yaml.png`
-- [ ] `05_emulador_funcionando.png`
-- [ ] `06_app_en_emulador.png`
-- [ ] `07_boton_funcionando.png`
-- [ ] `08_uso_paquete_google_fonts.png`
-- [ ] `09_repositorio_github.png`
-
-## 10. Autor
-
-**Nombre completo:** Juan Diego Benavides Luna
-Estudiante — Programación de Aplicaciones Móviles — Ecotec
+Van en la carpeta `capturas/` (ver `capturas/LEEME.txt` para los nombres exactos que pide la rúbrica): instalación de Flutter, el proyecto en VS Code, el emulador corriendo, la app funcionando, el uso del paquete externo y el repositorio ya en GitHub.

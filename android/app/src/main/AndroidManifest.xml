@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Necesario para cargar las fotos de los productos desde Picsum Photos. -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:label="catalogo_productos"
         android:name="${applicationName}"

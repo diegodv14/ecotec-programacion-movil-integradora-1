@@ -25,14 +25,40 @@ class ProductoCard extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Row(
           children: [
-            Container(
-              width: 56,
-              height: 56,
-              decoration: BoxDecoration(
-                color: producto.color.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(12),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Container(
+                width: 56,
+                height: 56,
+                decoration: BoxDecoration(
+                  border: Border.all(color: producto.color, width: 2),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network(
+                    producto.imagenUrl,
+                    fit: BoxFit.cover,
+                    loadingBuilder: (context, child, progress) {
+                      if (progress == null) return child;
+                      return Center(
+                        child: SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: producto.color,
+                          ),
+                        ),
+                      );
+                    },
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      color: producto.color.withValues(alpha: 0.15),
+                      child: Icon(producto.icono, color: producto.color),
+                    ),
+                  ),
+                ),
               ),
-              child: Icon(producto.icono, color: producto.color),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -56,7 +82,7 @@ class ProductoCard extends StatelessWidget {
                     '\$${producto.precio.toStringAsFixed(2)}',
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.bold,
-                      color: const Color(0xFF6C63FF),
+                      color: producto.color,
                     ),
                   ),
                 ],

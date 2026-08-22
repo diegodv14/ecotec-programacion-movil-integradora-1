@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_colors.dart';
+
 class OfertaBanner extends StatelessWidget {
   const OfertaBanner({super.key});
 
@@ -7,17 +9,17 @@ class OfertaBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: const Color(0xFFFFF3CD),
+      color: AppColors.ofertaBackground,
       padding: const EdgeInsets.all(12),
       child: const Row(
         children: [
-          Icon(Icons.celebration, color: Color(0xFFB8860B)),
+          Icon(Icons.celebration, color: AppColors.ofertaForeground),
           SizedBox(width: 8),
           Expanded(
             child: Text(
               '¡20% de descuento esta semana en toda la tienda!',
               style: TextStyle(
-                color: Color(0xFF6B4E00),
+                color: AppColors.ofertaForeground,
                 fontWeight: FontWeight.w600,
               ),
             ),

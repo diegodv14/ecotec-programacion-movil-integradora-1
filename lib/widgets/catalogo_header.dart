@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../theme/app_colors.dart';
+
 class CatalogoHeader extends StatelessWidget {
   final bool mostrarOfertas;
   final int totalFavoritos;
@@ -18,7 +20,7 @@ class CatalogoHeader extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
-      color: const Color(0xFF6C63FF),
+      color: AppColors.primaryNavy,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,7 +44,7 @@ class CatalogoHeader extends StatelessWidget {
                 onPressed: onAlternarOfertas,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
-                  foregroundColor: const Color(0xFF6C63FF),
+                  foregroundColor: AppColors.primaryNavy,
                 ),
                 icon: Icon(
                   mostrarOfertas ? Icons.visibility_off : Icons.local_offer,

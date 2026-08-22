@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../data/productos_data.dart';
+import '../theme/app_colors.dart';
 import '../widgets/catalogo_header.dart';
 import '../widgets/oferta_banner.dart';
 import '../widgets/producto_card.dart';
@@ -61,7 +62,7 @@ class _CatalogoHomePageState extends State<CatalogoHomePage> {
           'Catálogo de Productos',
           style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
         ),
-        backgroundColor: const Color(0xFF6C63FF),
+        backgroundColor: AppColors.primaryNavy,
         foregroundColor: Colors.white,
         centerTitle: true,
       ),

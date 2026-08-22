@@ -7,6 +7,7 @@ class Producto {
   final double precio;
   final IconData icono;
   final Color color;
+  final String imagenUrl;
 
   const Producto({
     required this.nombre,
@@ -14,5 +15,6 @@ class Producto {
     required this.precio,
     required this.icono,
     required this.color,
+    required this.imagenUrl,
   });
 }
