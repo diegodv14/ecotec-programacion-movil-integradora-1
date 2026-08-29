@@ -117,7 +117,6 @@ class _ProductoDetailPageState extends State<ProductoDetailPage> {
                   ),
                   const SizedBox(height: 28),
                   Row(
-                    gap: 12,
                     children: [
                       Expanded(
                         child: ElevatedButton.icon(
@@ -142,6 +141,7 @@ class _ProductoDetailPageState extends State<ProductoDetailPage> {
                           ),
                         ),
                       ),
+                      const SizedBox(width: 12),
                       Expanded(
                         child: ElevatedButton.icon(
                           onPressed: () {
