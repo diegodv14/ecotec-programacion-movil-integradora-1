@@ -60,49 +60,6 @@ lib/
 
 El único paquete externo utilizado en la aplicación es [`google_fonts`](https://pub.dev/packages/google_fonts), empleado para aplicar la fuente **Poppins** en la interfaz.
 
-## Instalación y ejecución
-
-Para ejecutar el proyecto es necesario tener instalado Flutter y un dispositivo Android o un emulador configurado.
-
-Primero se debe clonar el repositorio:
-
-```bash
-git clone https://github.com/diegodv14/ecotec-programacion-movil-integradora-1.git
-cd ecotec-programacion-movil-integradora-1
-```
-
-Luego instalar las dependencias:
-
-```bash
-flutter pub get
-```
-
-Finalmente, ejecutar la aplicación:
-
-```bash
-flutter run
-```
-
-También se puede ejecutar desde VS Code seleccionando un dispositivo o emulador disponible.
-
-## Desarrollo del proyecto
-
-Para preparar el proyecto utilicé el SDK de Flutter, Android Studio para el SDK de Android y la creación del emulador, y VS Code como editor.
-
-Para confirmar que el entorno quedó bien instalado corrí `flutter doctor` (ver `capturas/Ejecucion de Flutter Doctor.png`). Lo único que marca es un `[!]` en Visual Studio, porque le faltan componentes para compilar apps de escritorio Windows; eso no afecta este proyecto ya que solo se compila para Android, así que ese aviso se puede ignorar.
-
-La estructura nativa de Flutter se generó utilizando:
-
-```bash
-flutter create .
-```
-
-Después agregué la dependencia de Google Fonts:
-
-```bash
-flutter pub add google_fonts
-```
-
 ## Funcionamiento
 
 La pantalla principal contiene la lista de productos y el estado de los favoritos.

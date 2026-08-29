@@ -92,14 +92,24 @@ class _CarritoPageState extends State<CarritoPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Expanded(
-                              child: Container(
-                                color: item.producto.color.withAlpha(50),
-                                width: double.infinity,
-                                child: Center(
-                                  child: Icon(
-                                    item.producto.icono,
-                                    size: 48,
-                                    color: item.producto.color,
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(12),
+                                  topRight: Radius.circular(12),
+                                ),
+                                child: Image.asset(
+                                  item.producto.imagenAsset,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Container(
+                                    color: item.producto.color.withAlpha(50),
+                                    child: Center(
+                                      child: Icon(
+                                        item.producto.icono,
+                                        size: 48,
+                                        color: item.producto.color,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
