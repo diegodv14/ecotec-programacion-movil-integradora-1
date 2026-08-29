@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../screens/catalogo_home_page.dart';
+import '../screens/app_main.dart';
 import '../theme/app_colors.dart';
 
 class CatalogoProductosApp extends StatelessWidget {
@@ -18,7 +18,7 @@ class CatalogoProductosApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
-      home: const CatalogoHomePage(),
+      home: const AppMain(),
     );
   }
 }
