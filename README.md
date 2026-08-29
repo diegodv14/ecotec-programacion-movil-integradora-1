@@ -247,27 +247,6 @@ flutter run
 3. **Ofertas**: Ver promociones especiales disponibles
 4. **Perfil**: Ver información, contactar por WhatsApp o correo
 
-### Commits Realizados
-
-Se han realizado **16 commits** siguiendo estándares de control de versiones:
-
-1. `feat: agregar modelo y pantalla de Carrito`
-2. `feat: agregar pantalla de Ofertas Especiales`
-3. `feat: agregar pantalla de Perfil`
-4. `feat: implementar navegación principal con BottomNavigationBar`
-5. `refactor: adaptar pantalla de Catálogo a navegación`
-6. `feat: agregar botón de carrito en ProductoCard`
-7. `feat: agregar botón de carrito en pantalla de detalle`
-8. `feat: integrar url_launcher para contactos en Perfil`
-9. `docs: actualizar README.md con sección de Actividad Integradora 2`
-10. `style: mejorar diseño visual del BottomNavigationBar`
-11. `fix: ajustar versión de url_launcher a compatibilidad`
-12. `fix: reemplazar parámetro gap por SizedBox en Row`
-13. `fix: mostrar imágenes reales en pantalla de Carrito`
-14. `chore: cambiar nombre de la app a Tuti App`
-15. `feat: cambiar ícono de la app al logo de Tuti`
-16. `chore: eliminar archivos temporales de generación de iconos`
-
 ## Notas de Desarrollo
 
 - La aplicación utiliza `IndexedStack` para mantener el estado de cada pantalla al cambiar de pestaña
