@@ -176,16 +176,16 @@ Se implementó manejo de estado con `setState()` en:
 - Aplicada en AppBar, títulos y textos principales
 
 #### URL Launcher (Nuevo - Actividad Integradora 2)
-- `url_launcher: ^6.4.0`
+- `url_launcher: ^6.3.0`
 - Permite abrir enlaces de WhatsApp y correo electrónico
-- Implementado en pantalla de Perfil
-- Funcionalidad interactiva para contacto directo
+- Implementado en pantalla de Perfil con botones interactivos
+- Abre WhatsApp, correo y navegador web (no funciona en emulador, funciona en dispositivo físico)
 
 ### 7. Personalización de la Aplicación
 
-- **Nombre**: "Catálogo de Productos"
-- **Ícono**: Personalizado (disponible en `android/app/src/main/res/mipmap-*`)
-- **Logo**: Imágenes de productos con estilo
+- **Nombre**: "Tuti App" ✅
+- **Ícono Launcher**: Logo de Tuti (azul y amarillo) - Instalado en `android/app/src/main/res/mipmap-*` (48-192px)
+- **Logo**: Imágenes de productos con estilo + Logo de Tuti en icono launcher
 - **Colores Personalizados**:
   - Azul marino primario: `#1E3A4D`
   - Fondo claro: `#F5F5F5`
@@ -219,20 +219,6 @@ lib/
     └── producto_card.dart             (Actualizado)
 ```
 
-### 9. Commits Realizados
-
-Se han realizado 9+ commits siguiendo estándares de control de versiones:
-
-1. `feat: agregar modelo y pantalla de Carrito`
-2. `feat: agregar pantalla de Ofertas Especiales`
-3. `feat: agregar pantalla de Perfil`
-4. `feat: implementar navegación principal con BottomNavigationBar`
-5. `refactor: adaptar pantalla de Catálogo a navegación`
-6. `feat: agregar botón de carrito en ProductoCard`
-7. `feat: agregar botón de carrito en pantalla de detalle`
-8. `feat: integrar url_launcher para contactos en Perfil`
-9. `docs: actualizar README.md con sección de Actividad Integradora 2`
-
 ## Instalación y Ejecución
 
 ### Requisitos
@@ -261,9 +247,31 @@ flutter run
 3. **Ofertas**: Ver promociones especiales disponibles
 4. **Perfil**: Ver información, contactar por WhatsApp o correo
 
+### Commits Realizados
+
+Se han realizado **16 commits** siguiendo estándares de control de versiones:
+
+1. `feat: agregar modelo y pantalla de Carrito`
+2. `feat: agregar pantalla de Ofertas Especiales`
+3. `feat: agregar pantalla de Perfil`
+4. `feat: implementar navegación principal con BottomNavigationBar`
+5. `refactor: adaptar pantalla de Catálogo a navegación`
+6. `feat: agregar botón de carrito en ProductoCard`
+7. `feat: agregar botón de carrito en pantalla de detalle`
+8. `feat: integrar url_launcher para contactos en Perfil`
+9. `docs: actualizar README.md con sección de Actividad Integradora 2`
+10. `style: mejorar diseño visual del BottomNavigationBar`
+11. `fix: ajustar versión de url_launcher a compatibilidad`
+12. `fix: reemplazar parámetro gap por SizedBox en Row`
+13. `fix: mostrar imágenes reales en pantalla de Carrito`
+14. `chore: cambiar nombre de la app a Tuti App`
+15. `feat: cambiar ícono de la app al logo de Tuti`
+16. `chore: eliminar archivos temporales de generación de iconos`
+
 ## Notas de Desarrollo
 
 - La aplicación utiliza `IndexedStack` para mantener el estado de cada pantalla al cambiar de pestaña
 - Los favoritos se sincronizan en tiempo real entre todas las pantallas
 - El carrito persiste mientras la aplicación está en memoria
 - Los botones de contacto en el perfil requieren que el dispositivo tenga configurados WhatsApp y correo
+- El ícono launcher muestra el logo de Tuti en la pantalla de inicio del dispositivo
