@@ -8,6 +8,7 @@ class ProductoCard extends StatelessWidget {
   final int index;
   final bool esFavorito;
   final VoidCallback onFavoritoPressed;
+  final VoidCallback onAgregarCarrito;
   final VoidCallback onTap;
 
   const ProductoCard({
@@ -16,6 +17,7 @@ class ProductoCard extends StatelessWidget {
     required this.index,
     required this.esFavorito,
     required this.onFavoritoPressed,
+    required this.onAgregarCarrito,
     required this.onTap,
   });
 
@@ -85,12 +87,26 @@ class ProductoCard extends StatelessWidget {
                   ],
                 ),
               ),
-              IconButton(
-                onPressed: onFavoritoPressed,
-                icon: Icon(
-                  esFavorito ? Icons.favorite : Icons.favorite_border,
-                  color: esFavorito ? Colors.redAccent : Colors.grey,
-                ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    onPressed: onFavoritoPressed,
+                    icon: Icon(
+                      esFavorito ? Icons.favorite : Icons.favorite_border,
+                      color: esFavorito ? Colors.redAccent : Colors.grey,
+                    ),
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  ),
+                  IconButton(
+                    onPressed: onAgregarCarrito,
+                    icon: const Icon(Icons.shopping_cart),
+                    color: producto.color,
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  ),
+                ],
               ),
             ],
           ),
