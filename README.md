@@ -118,3 +118,195 @@ Las capturas de pantalla utilizadas para la entrega se encuentran dentro de:
 ```text
 capturas/
 ```
+
+---
+
+# Actividad Integradora 2 - Mejoras y Nuevas Funcionalidades
+
+**Continuación del proyecto de la Actividad Integradora 1**
+
+En esta segunda actividad se ha mejorado significativamente la aplicación, agregando nuevas pantallas, nuevos widgets y funcionalidades de navegación avanzada.
+
+## Mejoras Implementadas
+
+### 1. Nuevas Pantallas
+
+Se han implementado cuatro pantallas principales con navegación mediante `BottomNavigationBar`:
+
+1. **Catálogo** - Pantalla principal con lista de productos
+2. **Mi Carrito** - Gestor de compras con GridView
+3. **Ofertas Especiales** - Listado de promociones especiales
+4. **Mi Perfil** - Información del usuario y historial de compras
+
+### 2. Descripción de Pantallas
+
+#### Pantalla 1: Catálogo
+- Visualización de productos con imagen, nombre, precio y descripción
+- Botón de favoritos para marcar productos destacados
+- Botón de carrito para agregar productos
+- Banner de ofertas mostrable/ocultable
+- Navegación a pantalla de detalle mediante transición `Hero`
+
+#### Pantalla 2: Mi Carrito
+- Implementación con `GridView` para mostrar productos añadidos
+- Contador de cantidad por producto (aumentar/disminuir)
+- Cálculo de subtotal por producto
+- Botón para eliminar items
+- Total de compra con botón "Comprar"
+- Pantalla vacía con mensaje cuando no hay productos
+
+#### Pantalla 3: Ofertas Especiales
+- Lista de ofertas actuales con `ListView`
+- Diseño visual atractivo con Card y gradientes
+- Íconos representativos de cada promoción
+- Descripción y valor de cada oferta
+- Botones interactivos para ver detalles
+
+#### Pantalla 4: Mi Perfil
+- Avatar circular (CircleAvatar) con ícono de perfil
+- Información de contacto con `ListTile`
+- Botones interactivos para abrir WhatsApp y correo (usando `url_launcher`)
+- Historial de compras con `Divider` entre elementos
+- Botón de cerrar sesión
+
+### 3. Nuevos Widgets Utilizados
+
+Se han implementado los siguientes widgets de acuerdo a los requisitos:
+
+- ✅ **GridView** - En pantalla de Carrito para mostrar productos
+- ✅ **ListView** - En pantalla de Ofertas para lista de promociones
+- ✅ **ListTile** - En pantalla de Perfil para contactos e historial
+- ✅ **Card** - En múltiples pantallas para contenedores visuales
+- ✅ **CircleAvatar** - En pantalla de Perfil para foto de usuario
+- ✅ **Divider** - En pantalla de Perfil entre secciones
+- ✅ **Image** - Imágenes de productos con manejo de errores
+- ✅ **Icon** - Íconos en AppBar, botones y listas
+- ✅ **ElevatedButton** - Botones de acción en carrito y detalle
+- ✅ **IconButton** - Botones compactos para favorito y carrito
+- ✅ **FloatingActionButton** - Disponible en navegación
+- ✅ **Padding** - Espaciado en múltiples widgets
+- ✅ **SizedBox** - Espacios verticales y horizontales
+- ✅ **Expanded** - En pantalla de Carrito y detalle
+- ✅ **Container** - Contenedores personalizados en varias pantallas
+- ✅ **BottomNavigationBar** - Navegación principal entre pantallas
+
+### 4. Interacciones Implementadas
+
+Se han desarrollado las siguientes interacciones:
+
+1. **Navegación entre pantallas** - Uso de `BottomNavigationBar` para cambiar entre las 4 pantallas
+2. **Agregar/eliminar del carrito** - Funcionalidad completa de carrito de compras
+3. **Sistema de favoritos** - Marcar/desmarcar productos favoritos con sincronización
+4. **SnackBar** - Mensajes de retroalimentación en acciones (agregar carrito, favoritos, comprar)
+5. **Mostrar/ocultar información** - Banner de ofertas togglable
+6. **Incrementar contador** - Cantidad de productos en el carrito
+7. **Links externos** - Abrir WhatsApp y correo electrónico desde el perfil
+
+### 5. Estado Básico (setState)
+
+Se implementó manejo de estado con `setState()` en:
+
+- **AppMain** (pantalla principal) - Gestión central del estado
+- **CarritoPage** - Aumentar/disminuir cantidad de productos
+- **PerfilPage** - Interacciones con botones de contacto
+- **Favoritos** - Sistema sincronizado entre pantallas
+- **Ofertas visibility** - Mostrar/ocultar banner de promociones
+
+### 6. Paquetes Externos
+
+#### Google Fonts (Actividad Integradora 1)
+- Tipografía personalizada: **Poppins**
+- Aplicada en AppBar, títulos y textos principales
+
+#### URL Launcher (Nuevo - Actividad Integradora 2)
+- `url_launcher: ^6.4.0`
+- Permite abrir enlaces de WhatsApp y correo electrónico
+- Implementado en pantalla de Perfil
+- Funcionalidad interactiva para contacto directo
+
+### 7. Personalización de la Aplicación
+
+- **Nombre**: "Catálogo de Productos"
+- **Ícono**: Personalizado (disponible en `android/app/src/main/res/mipmap-*`)
+- **Logo**: Imágenes de productos con estilo
+- **Colores Personalizados**:
+  - Azul marino primario: `#1E3A4D`
+  - Fondo claro: `#F5F5F5`
+  - Colores por categoría: Rojo, Naranja, Amarillo, Verde, Azul, Púrpura
+  - Tipografía unificada con Google Fonts (Poppins)
+
+### 8. Estructura del Proyecto Actualizada
+
+```text
+lib/
+├── main.dart
+├── app/
+│   └── catalogo_productos_app.dart
+├── models/
+│   ├── producto.dart
+│   └── carrito_item.dart              (NUEVO)
+├── data/
+│   └── productos_data.dart
+├── screens/
+│   ├── app_main.dart                  (NUEVO - Navegación principal)
+│   ├── catalogo_home_page.dart        (Refactorizado)
+│   ├── carrito_page.dart              (NUEVO)
+│   ├── ofertas_page.dart              (NUEVO)
+│   ├── perfil_page.dart               (NUEVO)
+│   └── producto_detail_page.dart      (Refactorizado)
+├── theme/
+│   └── app_colors.dart
+└── widgets/
+    ├── catalogo_header.dart
+    ├── oferta_banner.dart
+    └── producto_card.dart             (Actualizado)
+```
+
+### 9. Commits Realizados
+
+Se han realizado 9+ commits siguiendo estándares de control de versiones:
+
+1. `feat: agregar modelo y pantalla de Carrito`
+2. `feat: agregar pantalla de Ofertas Especiales`
+3. `feat: agregar pantalla de Perfil`
+4. `feat: implementar navegación principal con BottomNavigationBar`
+5. `refactor: adaptar pantalla de Catálogo a navegación`
+6. `feat: agregar botón de carrito en ProductoCard`
+7. `feat: agregar botón de carrito en pantalla de detalle`
+8. `feat: integrar url_launcher para contactos en Perfil`
+9. `docs: actualizar README.md con sección de Actividad Integradora 2`
+
+## Instalación y Ejecución
+
+### Requisitos
+- Flutter 3.0+
+- Android SDK 21+
+- Emulador o dispositivo Android configurado
+
+### Pasos
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/diegodv14/ecotec-programacion-movil-integradora-1.git
+cd ecotec-programacion-movil-integradora-1
+
+# Instalar dependencias
+flutter pub get
+
+# Ejecutar la aplicación
+flutter run
+```
+
+## Prueba de Funcionalidades
+
+1. **Catálogo**: Explorar productos, ver detalles, marcar favoritos
+2. **Carrito**: Agregar productos desde catálogo o detalle, ajustar cantidades
+3. **Ofertas**: Ver promociones especiales disponibles
+4. **Perfil**: Ver información, contactar por WhatsApp o correo
+
+## Notas de Desarrollo
+
+- La aplicación utiliza `IndexedStack` para mantener el estado de cada pantalla al cambiar de pestaña
+- Los favoritos se sincronizan en tiempo real entre todas las pantallas
+- El carrito persiste mientras la aplicación está en memoria
+- Los botones de contacto en el perfil requieren que el dispositivo tenga configurados WhatsApp y correo
