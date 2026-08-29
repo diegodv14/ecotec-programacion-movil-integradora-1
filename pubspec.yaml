@@ -13,8 +13,9 @@ dependencies:
 
   cupertino_icons: ^1.0.6
 
-  # Paquete externo instalado para la Actividad Integradora 1.
+  # Paquetes externos instalados.
   google_fonts: ^8.1.0
+  url_launcher: ^6.4.0
 
 dev_dependencies:
   flutter_test:

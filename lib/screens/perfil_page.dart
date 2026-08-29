@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../theme/app_colors.dart';
 
@@ -13,7 +14,21 @@ class PerfilPage extends StatefulWidget {
 class _PerfilPageState extends State<PerfilPage> {
   late String nombre = 'Juan Diego Benavides';
   late String email = 'juan@tienda.com';
-  late String telefono = '+593 99 123 4567';
+  late String telefono = '+593991234567';
+
+  Future<void> _abrirWhatsApp() async {
+    final url = 'https://wa.me/593991234567?text=Hola%20quiero%20consultar%20sobre%20los%20productos';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+    }
+  }
+
+  Future<void> _abrirCorreo() async {
+    final url = 'mailto:$email';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +72,16 @@ class _PerfilPageState extends State<PerfilPage> {
                     leading: const Icon(Icons.email, color: AppColors.primaryNavy),
                     title: const Text('Email'),
                     subtitle: Text(email),
+                    onTap: _abrirCorreo,
+                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
                   ),
                   const Divider(),
                   ListTile(
                     leading: const Icon(Icons.phone, color: AppColors.primaryNavy),
-                    title: const Text('Teléfono'),
+                    title: const Text('WhatsApp'),
                     subtitle: Text(telefono),
+                    onTap: _abrirWhatsApp,
+                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
                   ),
                   const Divider(),
                   ListTile(
