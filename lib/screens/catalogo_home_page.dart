@@ -30,7 +30,7 @@ class CatalogoHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Catálogo de Productos',
+          'Tuti App',
           style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
         ),
         backgroundColor: AppColors.primaryNavy,

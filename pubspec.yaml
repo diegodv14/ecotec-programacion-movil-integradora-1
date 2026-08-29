@@ -1,5 +1,5 @@
-name: catalogo_productos
-description: "Catálogo de Productos - Actividad Integradora 1 (Mi Primera Aplicación en Flutter)"
+name: tuti_app
+description: "Tuti App - Tienda de Productos - Actividad Integradora 2"
 publish_to: 'none'
 
 version: 1.0.0+1
