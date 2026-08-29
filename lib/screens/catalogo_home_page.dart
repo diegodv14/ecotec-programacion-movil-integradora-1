@@ -8,52 +8,22 @@ import '../widgets/oferta_banner.dart';
 import '../widgets/producto_card.dart';
 import 'producto_detail_page.dart';
 
-/// Pantalla principal: lista el catálogo de productos y gestiona el estado
-/// de favoritos y visibilidad de ofertas.
-class CatalogoHomePage extends StatefulWidget {
-  const CatalogoHomePage({super.key});
+/// Pantalla de catálogo: lista de productos con favoritos y ofertas.
+class CatalogoHomePage extends StatelessWidget {
+  final Set<int> favoritos;
+  final Function(int) onAlternarFavorito;
+  final Function(int) onAgregarCarrito;
+  final bool mostrarOfertas;
+  final VoidCallback onAlternarOfertas;
 
-  @override
-  State<CatalogoHomePage> createState() => _CatalogoHomePageState();
-}
-
-class _CatalogoHomePageState extends State<CatalogoHomePage> {
-  // Guarda los índices de los productos marcados como favoritos.
-  final Set<int> _favoritos = {};
-
-  // Controla si se muestra el bloque de ofertas especiales.
-  bool _mostrarOfertas = false;
-
-  void _alternarFavorito(int index) {
-    setState(() {
-      if (_favoritos.contains(index)) {
-        _favoritos.remove(index);
-      } else {
-        _favoritos.add(index);
-      }
-    });
-
-    // Acción sencilla adicional: mostrar un mensaje al usuario.
-    final nombre = productosCatalogo[index].nombre;
-    final esFavorito = _favoritos.contains(index);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        duration: const Duration(seconds: 1),
-        content: Text(
-          esFavorito
-              ? '$nombre agregado a favoritos ⭐'
-              : '$nombre quitado de favoritos',
-        ),
-      ),
-    );
-  }
-
-  void _alternarOfertas() {
-    // El botón principal muestra u oculta el bloque de ofertas.
-    setState(() {
-      _mostrarOfertas = !_mostrarOfertas;
-    });
-  }
+  const CatalogoHomePage({
+    super.key,
+    required this.favoritos,
+    required this.onAlternarFavorito,
+    required this.onAgregarCarrito,
+    required this.mostrarOfertas,
+    required this.onAlternarOfertas,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -66,15 +36,16 @@ class _CatalogoHomePageState extends State<CatalogoHomePage> {
         backgroundColor: AppColors.primaryNavy,
         foregroundColor: Colors.white,
         centerTitle: true,
+        elevation: 0,
       ),
       body: Column(
         children: [
           CatalogoHeader(
-            mostrarOfertas: _mostrarOfertas,
-            totalFavoritos: _favoritos.length,
-            onAlternarOfertas: _alternarOfertas,
+            mostrarOfertas: mostrarOfertas,
+            totalFavoritos: favoritos.length,
+            onAlternarOfertas: onAlternarOfertas,
           ),
-          if (_mostrarOfertas) const OfertaBanner(),
+          if (mostrarOfertas) const OfertaBanner(),
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.all(12),
@@ -84,8 +55,9 @@ class _CatalogoHomePageState extends State<CatalogoHomePage> {
                 return ProductoCard(
                   producto: producto,
                   index: index,
-                  esFavorito: _favoritos.contains(index),
-                  onFavoritoPressed: () => _alternarFavorito(index),
+                  esFavorito: favoritos.contains(index),
+                  onFavoritoPressed: () => onAlternarFavorito(index),
+                  onAgregarCarrito: () => onAgregarCarrito(index),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -93,8 +65,9 @@ class _CatalogoHomePageState extends State<CatalogoHomePage> {
                         builder: (_) => ProductoDetailPage(
                           producto: producto,
                           index: index,
-                          esFavorito: _favoritos.contains(index),
-                          onFavoritoPressed: () => _alternarFavorito(index),
+                          esFavorito: favoritos.contains(index),
+                          onFavoritoPressed: () => onAlternarFavorito(index),
+                          onAgregarCarrito: () => onAgregarCarrito(index),
                         ),
                       ),
                     );
