@@ -108,23 +108,25 @@ class _AppMainState extends State<AppMain> {
           });
         },
         type: BottomNavigationBarType.fixed,
+        elevation: 8,
         selectedItemColor: AppColors.primaryNavy,
-        unselectedItemColor: Colors.grey,
+        unselectedItemColor: Colors.grey[600],
+        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
         items: [
           const BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_rounded),
             label: 'Catálogo',
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.shopping_cart),
-            label: 'Carrito (${_carrito.length})',
+            icon: const Icon(Icons.shopping_cart_rounded),
+            label: 'Carrito${_carrito.isNotEmpty ? ' (${_carrito.length})' : ''}',
           ),
           const BottomNavigationBarItem(
-            icon: Icon(Icons.local_offer),
+            icon: Icon(Icons.local_offer_rounded),
             label: 'Ofertas',
           ),
           const BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person_rounded),
             label: 'Perfil',
           ),
         ],
