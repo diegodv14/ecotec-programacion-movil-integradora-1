@@ -11,6 +11,7 @@ class ProductoDetailPage extends StatefulWidget {
   final int index;
   final bool esFavorito;
   final VoidCallback onFavoritoPressed;
+  final VoidCallback onAgregarCarrito;
 
   const ProductoDetailPage({
     super.key,
@@ -18,6 +19,7 @@ class ProductoDetailPage extends StatefulWidget {
     required this.index,
     required this.esFavorito,
     required this.onFavoritoPressed,
+    required this.onAgregarCarrito,
   });
 
   @override
@@ -114,25 +116,51 @@ class _ProductoDetailPageState extends State<ProductoDetailPage> {
                     style: TextStyle(fontSize: 14, color: Colors.grey[700], height: 1.4),
                   ),
                   const SizedBox(height: 28),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton.icon(
-                      onPressed: _toggleFavorito,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primaryNavy,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                  Row(
+                    gap: 12,
+                    children: [
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: _toggleFavorito,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            foregroundColor: AppColors.primaryNavy,
+                            side: const BorderSide(
+                              color: AppColors.primaryNavy,
+                              width: 2,
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          icon: Icon(
+                            _esFavorito ? Icons.favorite : Icons.favorite_border,
+                          ),
+                          label: Text(
+                            _esFavorito ? 'Favorito' : 'Favorito',
+                          ),
                         ),
                       ),
-                      icon: Icon(
-                        _esFavorito ? Icons.favorite : Icons.favorite_border,
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            widget.onAgregarCarrito();
+                            Navigator.pop(context);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primaryNavy,
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          icon: const Icon(Icons.shopping_cart),
+                          label: const Text('Al carrito'),
+                        ),
                       ),
-                      label: Text(
-                        _esFavorito ? 'Quitar de favoritos' : 'Agregar a favoritos',
-                      ),
-                    ),
+                    ],
                   ),
                 ],
               ),
