@@ -254,3 +254,129 @@ flutter run
 - El carrito persiste mientras la aplicación está en memoria
 - Los botones de contacto en el perfil requieren que el dispositivo tenga configurados WhatsApp y correo
 - El ícono launcher muestra el logo de Tuti en la pantalla de inicio del dispositivo
+
+---
+
+# Actividad Integradora 3 — Manejo de Estado con Provider
+
+## Descripción
+
+Se implementó el paquete **Provider** para centralizar y gestionar el estado de la aplicación de manera reactiva. El estado que anteriormente se pasaba entre componentes mediante callbacks ahora se gestiona a través de un `ChangeNotifier` que notifica a todos los consumidores de cambios automáticamente.
+
+## Instalación de Provider
+
+Se agregó la dependencia `provider: ^6.1.2` al archivo `pubspec.yaml`:
+
+```yaml
+dependencies:
+  provider: ^6.1.2
+```
+
+## Arquitectura del Provider
+
+### Clase `AppProvider`
+
+La clase `AppProvider` extiende `ChangeNotifier` y centraliza todo el estado de la aplicación:
+
+**Estado gestionado:**
+- `Set<int> _favoritos` — almacena los índices de productos marcados como favoritos
+- `List<CarritoItem> _carrito` — almacena los items del carrito con cantidad
+- `bool _mostrarOfertas` — controla la visibilidad del banner de ofertas
+
+**Métodos principales:**
+- `alternarFavorito(int index)` — marca o desactiva un producto como favorito
+- `agregarAlCarrito(int index)` — agrega un producto al carrito o incrementa su cantidad
+- `eliminarDelCarrito(CarritoItem item)` — elimina un item del carrito
+- `aumentarCantidad(CarritoItem item)` / `disminuirCantidad(CarritoItem item)` — modifica cantidades
+- `alternarOfertas()` — muestra u oculta el banner de ofertas
+
+Cada método termina con `notifyListeners()` para notificar a todos los widgets que escuchan cambios.
+
+### Registro del Provider
+
+En `CatalogoProductosApp` se envuelve la aplicación con `ChangeNotifierProvider`:
+
+```dart
+ChangeNotifierProvider(
+  create: (_) => AppProvider(),
+  child: MaterialApp(...),
+)
+```
+
+## Consumo del Provider en Pantallas
+
+Las pantallas consumen el provider de dos formas:
+
+### 1. `context.watch<AppProvider>()` — para leer estado reactivo
+
+Se utiliza en constructores de widgets que necesitan reconstruirse cuando el estado cambia:
+
+```dart
+final provider = context.watch<AppProvider>();
+```
+
+Ejemplo en `CarritoPage`:
+
+```dart
+Consumer<AppProvider>(
+  builder: (context, provider, _) {
+    return provider.carrito.isEmpty ? ... : ...
+  },
+)
+```
+
+### 2. `context.read<AppProvider>()` — para leer estado sin reactividad
+
+Se utiliza en callbacks de eventos (taps, presses) cuando solo necesitamos acceder al provider sin reconstrucción:
+
+```dart
+onPressed: () {
+  context.read<AppProvider>().alternarFavorito(index);
+}
+```
+
+## Sincronización Automática Entre Pantallas
+
+Un ejemplo concreto de cómo Provider sincroniza el estado:
+
+1. **Marcar favorito en pantalla de detalle** → `ProductoDetailPage` llama `context.read<AppProvider>().alternarFavorito(index)`
+2. **El provider notifica listeners** → `notifyListeners()` es ejecutado
+3. **Las demás pantallas se actualizan** → `CatalogoHomePage` con `context.watch()` se reconstruye, mostrando el contador de favoritos actualizado
+4. **El badge del carrito también se actualiza** → el `Consumer` en el `BottomNavigationBar` de `AppMain` se reconstruye, mostrando la cantidad correcta de items
+
+## Cambios en la Estructura
+
+```text
+lib/
+├── main.dart
+├── app/
+│   └── catalogo_productos_app.dart    (actualizado con ChangeNotifierProvider)
+├── providers/
+│   └── app_provider.dart              (NUEVO - ChangeNotifier)
+├── models/
+│   ├── producto.dart
+│   └── carrito_item.dart
+├── data/
+│   └── productos_data.dart
+├── screens/
+│   ├── app_main.dart                  (refactorizado)
+│   ├── catalogo_home_page.dart        (refactorizado)
+│   ├── carrito_page.dart              (refactorizado)
+│   ├── ofertas_page.dart
+│   ├── perfil_page.dart
+│   └── producto_detail_page.dart      (refactorizado)
+├── theme/
+│   └── app_colors.dart
+└── widgets/
+    ├── catalogo_header.dart
+    ├── oferta_banner.dart
+    └── producto_card.dart
+```
+
+## Beneficios de la Implementación
+
+- **Eliminación del prop drilling** — no se pasan callbacks entre múltiples niveles
+- **Estado centralizado** — un único punto de verdad para favoritos, carrito y ofertas
+- **Reactividad automática** — cambios en un lugar se reflejan en toda la app sin lógica manual
+- **Código más limpio** — las pantallas no necesitan gestionar su propio estado local
+- **Escalabilidad** — es fácil agregar nuevas funcionalidades que compartan el estado
