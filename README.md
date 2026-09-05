@@ -257,17 +257,6 @@ lib/
 ✅ **Código más limpio** — las pantallas no gestionar su propio estado  
 ✅ **Escalabilidad** — fácil agregar nuevas funcionalidades que compartan estado
 
-### Commits de Actividad 3
-
-1. `deps: agregar paquete provider`
-2. `feat: crear AppProvider con ChangeNotifier para gestionar estado`
-3. `feat: envolver app con ChangeNotifierProvider`
-4. `refactor: migrar AppMain y CatalogoHomePage a Provider`
-5. `refactor: migrar CarritoPage a Provider con Consumer`
-6. `refactor: migrar ProductoDetailPage a Provider`
-7. `docs: agregar sección de Actividad Integradora 3 al README`
-8. `docs: agregar capturas de pantalla al README`
-
 </details>
 
 ---
