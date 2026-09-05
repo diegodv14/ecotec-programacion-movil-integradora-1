@@ -287,6 +287,26 @@ lib/
 ### Aplicación Ejecutándose en el Emulador
 ![Aplicación ejecutándose en el emulador](capturas/Aplicaci%C3%B3n%20ejecut%C3%A1ndose%20en%20el%20emulador.png)
 
+---
+
+### 🎬 Video Demostrativo - Versión Final
+
+**Demostración completa de todas las funcionalidades:**
+
+<video width="320" height="640" controls>
+  <source src="capturas/Version%20Final%20de%20la%20aplicacion.mp4" type="video/mp4">
+  Tu navegador no soporta la etiqueta de video. Puedes descargar el video aquí: [Version Final de la aplicacion.mp4](capturas/Version%20Final%20de%20la%20aplicacion.mp4)
+</video>
+
+**En este video se puede ver:**
+- ✅ Navegación entre las 4 pantallas principales
+- ✅ Sistema de favoritos funcional en tiempo real
+- ✅ Carrito de compras con agregar/eliminar productos
+- ✅ Pantalla de ofertas especiales
+- ✅ Perfil del usuario con contactos
+- ✅ Sincronización automática de estado con Provider
+- ✅ Interacciones y animaciones de la interfaz
+
 </details>
 
 ---
