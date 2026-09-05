@@ -251,17 +251,17 @@ lib/
 
 ### Beneficios de la Implementación
 
-✅ **Eliminación del prop drilling** — no se pasan callbacks entre múltiples niveles  
-✅ **Estado centralizado** — un único punto de verdad  
-✅ **Reactividad automática** — cambios se reflejan sin lógica manual  
-✅ **Código más limpio** — las pantallas no gestionar su propio estado  
-✅ **Escalabilidad** — fácil agregar nuevas funcionalidades que compartan estado
+**Eliminación del prop drilling** — no se pasan callbacks entre múltiples niveles  
+**Estado centralizado** — un único punto de verdad  
+**Reactividad automática** — cambios se reflejan sin lógica manual  
+**Código más limpio** — las pantallas no gestionar su propio estado  
+**Escalabilidad** — fácil agregar nuevas funcionalidades que compartan estado
 
 </details>
 
 ---
 
-## 📸 Capturas de Pantalla
+## Capturas de Pantalla
 
 <details>
 <summary><strong>Haz clic para ver las capturas</strong></summary>
