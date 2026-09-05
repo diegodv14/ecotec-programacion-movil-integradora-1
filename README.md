@@ -192,32 +192,6 @@ Se implementó manejo de estado con `setState()` en:
   - Colores por categoría: Rojo, Naranja, Amarillo, Verde, Azul, Púrpura
   - Tipografía unificada con Google Fonts (Poppins)
 
-### 8. Estructura del Proyecto Actualizada
-
-```text
-lib/
-├── main.dart
-├── app/
-│   └── catalogo_productos_app.dart
-├── models/
-│   ├── producto.dart
-│   └── carrito_item.dart              (NUEVO)
-├── data/
-│   └── productos_data.dart
-├── screens/
-│   ├── app_main.dart                  (NUEVO - Navegación principal)
-│   ├── catalogo_home_page.dart        (Refactorizado)
-│   ├── carrito_page.dart              (NUEVO)
-│   ├── ofertas_page.dart              (NUEVO)
-│   ├── perfil_page.dart               (NUEVO)
-│   └── producto_detail_page.dart      (Refactorizado)
-├── theme/
-│   └── app_colors.dart
-└── widgets/
-    ├── catalogo_header.dart
-    ├── oferta_banner.dart
-    └── producto_card.dart             (Actualizado)
-```
 
 ## Instalación y Ejecución
 
@@ -380,3 +354,39 @@ lib/
 - **Reactividad automática** — cambios en un lugar se reflejan en toda la app sin lógica manual
 - **Código más limpio** — las pantallas no necesitan gestionar su propio estado local
 - **Escalabilidad** — es fácil agregar nuevas funcionalidades que compartan el estado
+
+## Capturas de Pantalla
+
+### Pantalla Principal - Catálogo de Productos
+
+![Pantalla Individual de la App](capturas/Pantalla%20Individual%20de%20la%20App.png)
+
+### Sistema de Favoritos en Acción
+
+![Uso del boton de favoritos](capturas/Uso%20del%20boton%20de%20favoritos.png)
+
+### Pantalla de Carrito de Compras
+
+![Pantalla de Carrito](capturas/Pantalla%20de%20Carrito.png)
+
+### Pantalla de Ofertas Especiales
+
+![Pantalla de Ofertas Especiales](capturas/Pantalla%20de%20Ofertas%20Especiales.png)
+
+### Pantalla de Perfil del Usuario
+
+![Pantalla de Perfil del Usuario](capturas/Pantalla%20de%20Perfil%20del%20Usuario.png)
+
+### Menú de Navegación Inferior
+
+![Nuevo Menu de Navegacion](capturas/Nuevo%20Menu%20de%20Navegacion.png)
+
+### Aplicación Ejecutándose en el Emulador
+
+![Aplicación ejecutándose en el emulador](capturas/Aplicaci%C3%B3n%20ejecut%C3%A1ndose%20en%20el%20emulador.png)
+
+## Autor
+
+**Juan Diego Benavides Luna**  
+Estudiante de Programación de Aplicaciones Móviles  
+Ecotec - 2026
