@@ -1,42 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../models/producto.dart';
+import '../providers/app_provider.dart';
 import '../theme/app_colors.dart';
 
-/// Pantalla de detalle: se abre al tocar un producto en la lista y muestra
-/// su foto en grande, descripción completa y precio.
-class ProductoDetailPage extends StatefulWidget {
+class ProductoDetailPage extends StatelessWidget {
   final Producto producto;
   final int index;
-  final bool esFavorito;
-  final VoidCallback onFavoritoPressed;
-  final VoidCallback onAgregarCarrito;
 
   const ProductoDetailPage({
     super.key,
     required this.producto,
     required this.index,
-    required this.esFavorito,
-    required this.onFavoritoPressed,
-    required this.onAgregarCarrito,
   });
 
   @override
-  State<ProductoDetailPage> createState() => _ProductoDetailPageState();
-}
-
-class _ProductoDetailPageState extends State<ProductoDetailPage> {
-  late bool _esFavorito = widget.esFavorito;
-
-  void _toggleFavorito() {
-    setState(() => _esFavorito = !_esFavorito);
-    widget.onFavoritoPressed();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final producto = widget.producto;
+    final provider = context.watch<AppProvider>();
+    final esFavorito = provider.esFavorito(index);
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -49,7 +32,7 @@ class _ProductoDetailPageState extends State<ProductoDetailPage> {
             foregroundColor: Colors.white,
             flexibleSpace: FlexibleSpaceBar(
               background: Hero(
-                tag: 'producto-imagen-${widget.index}',
+                tag: 'producto-imagen-$index',
                 child: Image.asset(
                   producto.imagenAsset,
                   fit: BoxFit.cover,
@@ -84,10 +67,12 @@ class _ProductoDetailPageState extends State<ProductoDetailPage> {
                         ),
                       ),
                       IconButton(
-                        onPressed: _toggleFavorito,
+                        onPressed: () {
+                          context.read<AppProvider>().alternarFavorito(index);
+                        },
                         icon: Icon(
-                          _esFavorito ? Icons.favorite : Icons.favorite_border,
-                          color: _esFavorito ? Colors.redAccent : Colors.grey,
+                          esFavorito ? Icons.favorite : Icons.favorite_border,
+                          color: esFavorito ? Colors.redAccent : Colors.grey,
                           size: 28,
                         ),
                       ),
@@ -120,7 +105,9 @@ class _ProductoDetailPageState extends State<ProductoDetailPage> {
                     children: [
                       Expanded(
                         child: ElevatedButton.icon(
-                          onPressed: _toggleFavorito,
+                          onPressed: () {
+                            context.read<AppProvider>().alternarFavorito(index);
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.transparent,
                             foregroundColor: AppColors.primaryNavy,
@@ -134,10 +121,10 @@ class _ProductoDetailPageState extends State<ProductoDetailPage> {
                             ),
                           ),
                           icon: Icon(
-                            _esFavorito ? Icons.favorite : Icons.favorite_border,
+                            esFavorito ? Icons.favorite : Icons.favorite_border,
                           ),
                           label: Text(
-                            _esFavorito ? 'Favorito' : 'Favorito',
+                            esFavorito ? 'Favorito' : 'Favorito',
                           ),
                         ),
                       ),
@@ -145,7 +132,13 @@ class _ProductoDetailPageState extends State<ProductoDetailPage> {
                       Expanded(
                         child: ElevatedButton.icon(
                           onPressed: () {
-                            widget.onAgregarCarrito();
+                            context.read<AppProvider>().agregarAlCarrito(index);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Producto agregado al carrito 🛒'),
+                                duration: Duration(seconds: 1),
+                              ),
+                            );
                             Navigator.pop(context);
                           },
                           style: ElevatedButton.styleFrom(
