@@ -8,7 +8,7 @@ Aplicación móvil desarrollada con Flutter para gestionar un catálogo de produ
 ---
 
 <details>
-<summary><h2>📱 Actividad Integradora 1 - Mi Primera Aplicación en Flutter</h2></summary>
+<summary><h2>Actividad Integradora 1 - Mi Primera Aplicación en Flutter</h2></summary>
 
 ### Características
 
@@ -72,7 +72,7 @@ La pantalla principal contiene la lista de productos y el estado de los favorito
 ---
 
 <details>
-<summary><h2>🛒 Actividad Integradora 2 - Mejoras y Nuevas Funcionalidades</h2></summary>
+<summary><h2>Actividad Integradora 2 - Mejoras y Nuevas Funcionalidades</h2></summary>
 
 ### Resumen
 
@@ -155,7 +155,7 @@ En esta actividad se mejoró significativamente la aplicación, agregando nuevas
 ---
 
 <details>
-<summary><h2>⚡ Actividad Integradora 3 - Manejo de Estado con Provider</h2></summary>
+<summary><h2>Actividad Integradora 3 - Manejo de Estado con Provider</h2></summary>
 
 ### Resumen
 
@@ -302,7 +302,7 @@ lib/
 
 ---
 
-## 🚀 Instalación y Ejecución
+## Instalación y Ejecución
 
 ### Requisitos
 - Flutter 3.0+
@@ -322,23 +322,6 @@ flutter pub get
 # Ejecutar la aplicación
 flutter run
 ```
-
----
-
-## 📋 Resumen de Requisitos Cumplidos
-
-| Requisito | Estado |
-|-----------|--------|
-| Estructura (MaterialApp, Scaffold, AppBar, 4 pantallas) | ✅ |
-| Organización en carpetas | ✅ |
-| Provider (ChangeNotifier, notifyListeners, ChangeNotifierProvider, Consumer) | ✅ |
-| Widgets reutilizables (ProductoCard, CatalogoHeader, OfertaBanner) | ✅ |
-| Modelos de datos (Producto, CarritoItem) | ✅ |
-| Navegación (Navigator.push/pop, BottomNavigationBar) | ✅ |
-| ThemeData centralizado | ✅ |
-| 8+ commits significativos en GitHub | ✅ |
-| README con capturas incrustadas | ✅ |
-| Sincronización automática entre pantallas | ✅ |
 
 ---
 
