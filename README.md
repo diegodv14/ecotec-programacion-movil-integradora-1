@@ -289,23 +289,22 @@ lib/
 
 ---
 
-### 🎬 Video Demostrativo - Versión Final
+## Video Demostrativo - Versión Final
 
-**Demostración completa de todas las funcionalidades:**
+**Demostración completa de todas las funcionalidades de la aplicación:**
 
-<video width="320" height="640" controls>
-  <source src="capturas/Version%20Final%20de%20la%20aplicacion.mp4" type="video/mp4">
-  Tu navegador no soporta la etiqueta de video. Puedes descargar el video aquí: [Version Final de la aplicacion.mp4](capturas/Version%20Final%20de%20la%20aplicacion.mp4)
-</video>
+[![Reproducir video de demostración](https://img.shields.io/badge/Descargar%20Video-Version%20Final-blue?style=for-the-badge)](capturas/Version%20Final%20de%20la%20aplicacion.mp4)
+
+**Archivo:** `capturas/Version Final de la aplicacion.mp4` (9.6 MB)
 
 **En este video se puede ver:**
-- ✅ Navegación entre las 4 pantallas principales
-- ✅ Sistema de favoritos funcional en tiempo real
-- ✅ Carrito de compras con agregar/eliminar productos
-- ✅ Pantalla de ofertas especiales
-- ✅ Perfil del usuario con contactos
-- ✅ Sincronización automática de estado con Provider
-- ✅ Interacciones y animaciones de la interfaz
+- Navegación entre las 4 pantallas principales
+- Sistema de favoritos funcional en tiempo real
+- Carrito de compras con agregar/eliminar productos
+- Pantalla de ofertas especiales
+- Perfil del usuario con contactos
+- Sincronización automática de estado con Provider
+- Interacciones y animaciones de la interfaz
 
 </details>
 
